@@ -86,9 +86,19 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  // Solution code here...
+  let sumArr = [];
+  for (let i = 0; i < hoursOpen.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < stores.length; j++) {
+      sum = sum + stores[j][i];
+
+    }
+    sumArr.push(sum);
+  }
+  return sumArr;
 
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -101,7 +111,12 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  // Solution code here...
+  let dataArr = [];
+  for (let i = 0; i < hours.length; i++) {
+    let obj = { sales: `${data[i]} cookies`, time: `${hours[i]}` };
+    dataArr.push(obj);
+  }
+  return dataArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -126,7 +141,8 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let quantityOfTreats = arr[2].items[1].quantity;
+  return quantityOfTreats;
 };
 
 /* ------------------------------------------------------------------------------------------------
