@@ -5,26 +5,23 @@ CHALLENGE 1 - Review
 
 Write a function named transformToLis that, given an object, returns an array of the key value pairs as html list items.
 
-For example:
+For example: 
 {
   name: 'bob',
   age: 32
 }
 
-Becomes:
+Becomes: 
 [
 <li>name: bob</li>,
 <li>age: 32</li>
 ]
 ------------------------------------------------------------------------------------------------ */
-
-function transformToLis(obj) {
-  let arr = [];
-  for (const [key, value] of Object.entries(obj)) {
-    arr.push(`<li>${key}: ${value}</li>`);
-  }
-  return arr;
+function transformToLis(obj){
+  // Solution code here...
+  return Object.entries(obj).map((item)=>`<li>${item.join(': ')}</li>`);
 }
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -35,19 +32,15 @@ Note: You might need to use the same method more than once.
 For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
-
 const count = (target, input) => {
-  let count = 0;
-  input.map(Element1 => {
-    Element1.map(Element2 => {
-      if (target === Element2) {
-        count = count + 1;
-      }
-    });
-  });
-  return count;
+  // Solution code here...
+  let newArr = [];
+  input.forEach(val => {
+    newArr.push(val.filter(item => item === target))
+  })
+  let result = newArr.toString().split(',').join('').length;
+  return result;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -57,15 +50,13 @@ You may want to use filter, map, or reduce for this problem, but are not require
 
 For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
-
 const totalSum = (input) => {
-  let count = 0;
-  input.map(Element1 => {
-    Element1.map(Element2 => {
-      count = count + Element2;
-    });
+  // Solution code here...
+  let sum = 0;
+  input.forEach(val => {
+    val.forEach(n => sum += n);
   });
-  return count;
+  return sum;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -78,19 +69,13 @@ This function should then raise 2 to the power of the resulting numbers, returni
 
 For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
-
 const divisibleByFiveTwoToThePower = (input) => {
-  let arr = [];
-  input.filter(Element1 => {
-    let arr1 = [];
-    Element1.filter(Element2 => {
-      if (typeof (Element2) !== 'string' && Element2 % 5 === 0) {
-        return (arr1.push(Math.pow(2, Element2)));
-      }
-    });
-    arr.push(arr1);
+  // Solution code here...
+  let newArr = [];
+  input.forEach(arr => {
+    newArr.push(arr.filter(n => typeof n === 'number' && n % 5 === 0).map(n => Math.pow(2, n)));
   });
-  return arr;
+  return newArr;
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 
@@ -155,13 +140,15 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  let string = [];
-  data.filter(Element => {
-    if (Element.gender === 'male' || Element.gender === 'female')
-      return (string.push(Element.name));
-  });
-  return string.join(' and ');
+  // Solution code here...
+  let newArr = [];
+  data.forEach(char => {
+    if (char.gender === 'male' || char.gender === 'female') newArr.push(char)
+  })
+  let result = newArr.map(item => item['name']).join(' and ');
+  return result;
 };
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 
 
@@ -169,19 +156,10 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  let arr = [];
-  let shortest;
-  data.filter(Element => {
-    return (arr.push(Element.name));
-  });
-  shortest = arr[0];
-  for (let i = 0; i < arr.length; i++) {
-    if (shortest.length >= arr[i].length) {
-      shortest = arr[i];
-    }
-    return short;
-
-  };
+  // Solution code here...
+  data.sort((a, b) => a['height'] - b['height']);
+  return data[0].name;
+};
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
